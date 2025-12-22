@@ -1,0 +1,108 @@
+/* ManageEmployee.css */
+
+.manage-employees-container {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f4f4;
+  }
+  
+  .manage-employees-header {
+    background-color: #000000;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-logo {
+    height: 40px;
+  }
+  
+  .header-title {
+    margin: 0;
+    color: #5a7f65;
+  }
+  
+  .header-go-back-button {
+    background-color: #5a7f65;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .manage-employees-content {
+    flex: 1;
+    padding: 2rem;
+  }
+  
+  .employees-list {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+  }
+  
+  .list-divider {
+    border: 1px solid #eee;
+    margin-bottom: 1rem;
+  }
+  
+  .employee-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #0f4805;
+    align-items: center;
+  }
+  
+  .employee-card:last-child {
+    border-bottom: none;
+  }
+  
+  .employee-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .employee-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: green;
+    margin-bottom: 0.5rem;
+  }
+  
+  .employee-detail-item {
+    color: #555;
+    margin: 0.5rem 0;
+  }
+  
+  .employee-detail-label {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #333;
+  }
+  
+  .employee-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .delete-button:hover, .header-go-back-button:hover {
+    background-color: #b02a37;
+  }
