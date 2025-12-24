@@ -59,80 +59,118 @@ function EmployerRegistration() {
   };
 
   return (
-    <div id="body11">
-      <div className="container11">
-        <h1 className="heading11">QUICK HIRE</h1>
-        <form id="jobForm11" onSubmit={handleSubmit}>
-          <label htmlFor="name" className='name11'>Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder='name'
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="email" className='email11'>Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder='email'
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="phone" className='phone11'>Phone:</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder='phone'
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="age" className='age11'>Age:</label>
-          <input
-            type="text"
-            id="age"
-            name="age"
-            placeholder='age'
-            value={formData.age}
-            onChange={handleChange}
-            required
-            min='18'
-          />
-          <label htmlFor="gender" className='gender11'>Gender:</label>
-          <select
-            id="gender"
-            name="gender"
-            value={formData.gender}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-          <label htmlFor="password" className='password11'>Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder='password'
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-          <br />
-          <button type="submit" id="submit11">Submit</button>
+    <div className="employer-signup-wrapper">
+      <div className="employer-signup-container">
+        <div className="employer-signup-header">
+          <h1 className="employer-signup-title">Join Quick Hire</h1>
+          <p className="employer-signup-subtitle">Create your employer account</p>
+        </div>
+        
+        <form className="employer-signup-form" onSubmit={handleSubmit}>
+          <div className="employer-form-row">
+            <div className="employer-input-group">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                placeholder=" "
+              />
+              <label htmlFor="name">Company/Business Name</label>
+            </div>
+          </div>
+
+          <div className="employer-form-row">
+            <div className="employer-input-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder=" "
+              />
+              <label htmlFor="email">Email Address</label>
+            </div>
+          </div>
+
+          <div className="employer-form-row two-col">
+            <div className="employer-input-group">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                placeholder=" "
+              />
+              <label htmlFor="phone">Phone Number</label>
+            </div>
+            <div className="employer-input-group">
+              <input
+                type="number"
+                id="age"
+                name="age"
+                value={formData.age}
+                onChange={handleChange}
+                required
+                min='18'
+                placeholder=" "
+              />
+              <label htmlFor="age">Age</label>
+            </div>
+          </div>
+
+          <div className="employer-form-row">
+            <div className="employer-input-group select-group">
+              <select
+                id="gender"
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+              <label htmlFor="gender">Gender</label>
+            </div>
+          </div>
+
+          <div className="employer-form-row">
+            <div className="employer-input-group">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                placeholder=" "
+              />
+              <label htmlFor="password">Password</label>
+            </div>
+          </div>
+
+          {errorMessage && <div className="employer-error-message">{errorMessage}</div>}
+
+          <button type="submit" className="employer-signup-btn">
+            <span>Create Account</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
         </form>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <br />
-        <label className="alreadyLogin1" onClick={() => navigate('/LoginEmployer')}>Already registered?Click Here</label>
+
+        <div className="employer-signup-footer">
+          <p>Already have an account? <span className="employer-login-link" onClick={() => navigate('/LoginEmployer')}>Sign In</span></p>
+        </div>
       </div>
     </div>
   );

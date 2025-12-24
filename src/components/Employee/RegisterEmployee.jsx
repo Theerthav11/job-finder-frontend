@@ -72,75 +72,122 @@ function RegisterEmployee() {
   };
 
   return (
-    <div id="body1">
-      <div className="container1">
-        <h1 className="heading1">QUICK HIRE</h1>
-        <form id="jobForm" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            id="fullname"
-            name="fullname"
-            placeholder='Full Name'
-            value={formData.fullname}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder='Email'
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder='Phone'
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="number"
-            id="age"
-            name="age"
-            placeholder='Age'
-            value={formData.age}
-            onChange={handleChange}
-            required
-            min='18'
-          />
-          <label htmlFor="gender" className='gender1'>Gender:</label>
-          <select id="gender" name="gender" value={formData.gender} onChange={handleChange} required>
-            <option value="">Select</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-          <label htmlFor="qualification" className='quali1'>Qualification:</label>
-          <select id="qualification" name="qualification" value={formData.qualification} onChange={handleChange} required>
-            <option value="">Select</option>
-            <option value="highschool">High School</option>
-            <option value="higherSec">Higher Secondary</option>
-            <option value="graduate">Graduate</option>
-            <option value="postgraduate">Post Graduate</option>
-          </select>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder='Password'
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-          <button type="submit" id="submit1">Submit</button> 
-        </form><br /> <br /><br /> <br />
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <label className="alreadyLogin" onClick={() => navigate('/LoginEmployee')}>Already registered? Click Here</label>
+    <div className="signup-wrapper">
+      <div className="signup-container">
+        <div className="signup-header">
+          <h1 className="signup-title">Join Quick Hire</h1>
+          <p className="signup-subtitle">Create your employee account</p>
+        </div>
+
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <div className="form-row">
+            <div className="input-group">
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                value={formData.fullname}
+                onChange={handleChange}
+                required
+                placeholder=" "
+              />
+              <label htmlFor="fullname">Full Name</label>
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="input-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder=" "
+              />
+              <label htmlFor="email">Email Address</label>
+            </div>
+          </div>
+
+          <div className="form-row two-col">
+            <div className="input-group">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                placeholder=" "
+              />
+              <label htmlFor="phone">Phone Number</label>
+            </div>
+            <div className="input-group">
+              <input
+                type="number"
+                id="age"
+                name="age"
+                value={formData.age}
+                onChange={handleChange}
+                required
+                min='18'
+                placeholder=" "
+              />
+              <label htmlFor="age">Age</label>
+            </div>
+          </div>
+
+          <div className="form-row two-col">
+            <div className="input-group select-group">
+              <select id="gender" name="gender" value={formData.gender} onChange={handleChange} required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+              <label htmlFor="gender">Gender</label>
+            </div>
+            <div className="input-group select-group">
+              <select id="qualification" name="qualification" value={formData.qualification} onChange={handleChange} required>
+                <option value="">Select Qualification</option>
+                <option value="highschool">High School</option>
+                <option value="higherSec">Higher Secondary</option>
+                <option value="graduate">Graduate</option>
+                <option value="postgraduate">Post Graduate</option>
+              </select>
+              <label htmlFor="qualification">Qualification</label>
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="input-group">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                placeholder=" "
+              />
+              <label htmlFor="password">Password</label>
+            </div>
+          </div>
+
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
+
+          <button type="submit" className="signup-btn">
+            <span>Create Account</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </form>
+
+        <div className="signup-footer">
+          <p>Already have an account? <span className="login-link" onClick={() => navigate('/LoginEmployee')}>Sign In</span></p>
+        </div>
       </div>
     </div>
   );

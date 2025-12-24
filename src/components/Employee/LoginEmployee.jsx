@@ -44,33 +44,61 @@ function LoginEmployee() {
   };
 
   return (
-    <div id="maincontainer">
-      <div id='innercontainer'>
-        <h1 id="loginHere">Login Here...</h1>
-        <form id="jobForm1" onSubmit={handleSubmit}>
-          <label htmlFor="email" id="name2">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder='Enter email'
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="password" id="phone2">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder='Enter password'
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-          {errorMessage && <p style={{ color: "blue", margin: 0 }}>{errorMessage}</p>}
-          <button id="submit2" type="submit">Submit</button>
+    <div className="login-wrapper">
+      <div className="login-container">
+        <div className="login-header">
+          <h1 className="login-title">Welcome Back</h1>
+          <p className="login-subtitle">Sign in to your employee account</p>
+        </div>
+        
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="login-input-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              placeholder=" "
+            />
+            <label htmlFor="email">Email Address</label>
+            <svg className="login-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+
+          <div className="login-input-group">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              placeholder=" "
+            />
+            <label htmlFor="password">Password</label>
+            <svg className="login-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+
+          {errorMessage && <div className="login-error-message">{errorMessage}</div>}
+
+          <button type="submit" className="login-btn">
+            <span>Sign In</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
         </form>
+
+        <div className="login-footer">
+          <p>Don't have an account? <span className="signup-link" onClick={() => navigate('/RegisterEmployee')}>Sign Up</span></p>
+        </div>
       </div>
     </div>
   );
