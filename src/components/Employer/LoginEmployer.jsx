@@ -97,6 +97,7 @@ function LoginEmployer() {
 
         <div className="employer-login-footer">
           <p>Don't have an account? <span className="employer-signup-link" onClick={() => navigate('/EmployerRegistration')}>Sign Up</span></p>
+          <p style={{ marginTop: '10px' }}><span className="employer-signup-link" onClick={() => navigate('/')}>← Back to Home</span></p>
         </div>
       </div>
     </div>
