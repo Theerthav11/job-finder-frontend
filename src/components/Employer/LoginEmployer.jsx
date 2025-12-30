@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './LoginEmployer.css';
 import { useNavigate } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 
 function LoginEmployer() {
@@ -29,7 +30,7 @@ function LoginEmployer() {
       });
 
       if (response.data.message === "Login successful") {
-        localStorage.setItem("employerToken", response.data.token); // Store JWT token
+        localStorage.setItem("employerToken", response.data.token);
         localStorage.setItem("employerData", JSON.stringify(response.data.employer));
         alert("Login successful!");
         setErrorMessage("");
@@ -40,6 +41,27 @@ function LoginEmployer() {
     } catch (error) {
       setErrorMessage("Server error: " + error.response.data)
     }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const response = await axios.post("http://localhost:5000/api/employer/google-login", {
+        token: credentialResponse.credential
+      });
+
+      if (response.data.token) {
+        localStorage.setItem("employerToken", response.data.token);
+        localStorage.setItem("employerData", JSON.stringify(response.data.employer));
+        alert("Google login successful!");
+        navigate('/EmployerHomePage');
+      }
+    } catch (error) {
+      setErrorMessage("Google login failed. Please try again.");
+    }
+  };
+
+  const handleGoogleError = () => {
+    setErrorMessage("Google login failed. Please try again.");
   };
 
   return (
@@ -94,6 +116,21 @@ function LoginEmployer() {
             </svg>
           </button>
         </form>
+
+        <div className="employer-login-divider">
+          <span>OR</span>
+        </div>
+
+        <div className="employer-google-login-wrapper">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+            useOneTap
+            theme="outline"
+            size="large"
+            width="100%"
+          />
+        </div>
 
         <div className="employer-login-footer">
           <p>Don't have an account? <span className="employer-signup-link" onClick={() => navigate('/EmployerRegistration')}>Sign Up</span></p>

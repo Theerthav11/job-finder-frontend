@@ -29,6 +29,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -94,8 +95,8 @@
   transition: all 0.3s ease;
 }
 
-.login-input-group input:focus + label,
-.login-input-group input:not(:placeholder-shown) + label {
+.login-input-group input:focus+label,
+.login-input-group input:not(:placeholder-shown)+label {
   top: 0;
   left: 45px;
   font-size: 12px;
@@ -112,7 +113,7 @@
   transition: color 0.3s ease;
 }
 
-.login-input-group input:focus ~ .login-input-icon {
+.login-input-group input:focus~.login-input-icon {
   color: #0093E9;
 }
 
@@ -127,9 +128,19 @@
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
 }
 
 .login-btn {
@@ -171,6 +182,33 @@
   margin-top: 30px;
   color: #6b7280;
   font-size: 15px;
+}
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 25px 0;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.login-divider span {
+  padding: 0 15px;
+  font-weight: 500;
+}
+
+.google-login-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .signup-link {

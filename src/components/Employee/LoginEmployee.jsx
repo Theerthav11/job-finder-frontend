@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './LoginEmployee.css';
 import { useNavigate } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 
 function LoginEmployee() {
@@ -30,8 +31,8 @@ function LoginEmployee() {
       });
 
       if (response.data.message === "Login successful") {
-        localStorage.setItem("employeeToken", response.data.token); // Store JWT token
-        localStorage.setItem("employeeData", JSON.stringify(response.data.employee)); // Optional: store basic user info
+        localStorage.setItem("employeeToken", response.data.token);
+        localStorage.setItem("employeeData", JSON.stringify(response.data.employee));
         alert("Login successful!");
         setErrorMessage("");
         navigate('/EmployeeHomePage');
@@ -41,6 +42,27 @@ function LoginEmployee() {
     } catch (error) {
       setErrorMessage("Server error: " + error.response.data);
     }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const response = await axios.post("http://localhost:5000/api/employees/google-login", {
+        token: credentialResponse.credential
+      });
+
+      if (response.data.token) {
+        localStorage.setItem("employeeToken", response.data.token);
+        localStorage.setItem("employeeData", JSON.stringify(response.data.employee));
+        alert("Google login successful!");
+        navigate('/EmployeeHomePage');
+      }
+    } catch (error) {
+      setErrorMessage("Google login failed. Please try again.");
+    }
+  };
+
+  const handleGoogleError = () => {
+    setErrorMessage("Google login failed. Please try again.");
   };
 
   return (
@@ -95,6 +117,21 @@ function LoginEmployee() {
             </svg>
           </button>
         </form>
+
+        <div className="login-divider">
+          <span>OR</span>
+        </div>
+
+        <div className="google-login-wrapper">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+            useOneTap
+            theme="outline"
+            size="large"
+            width="100%"
+          />
+        </div>
 
         <div className="login-footer">
           <p>Don't have an account? <span className="signup-link" onClick={() => navigate('/RegisterEmployee')}>Sign Up</span></p>

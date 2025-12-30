@@ -173,6 +173,33 @@
   font-size: 15px;
 }
 
+.employer-login-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 25px 0;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.employer-login-divider::before,
+.employer-login-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.employer-login-divider span {
+  padding: 0 15px;
+  font-weight: 500;
+}
+
+.employer-google-login-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
 .employer-signup-link {
   color: #0093E9;
   font-weight: 600;
