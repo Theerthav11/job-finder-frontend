@@ -1,311 +1,297 @@
- .body4{
-  font-family: Arial, sans-serif;
-  background-color:#ffff;
+* {
   margin: 0;
   padding: 0;
-  display: flex;
-  width:100vw;
-  height:100vh;
-  flex-direction: column;
+  box-sizing: border-box;
 }
 
-#header1{
-  height: 60px;
-    width: 100%;
-    background-color: black;
-    display: flex;
-    padding-top:20px;
-    padding-bottom: 20px;
-    position: fixed;
-    margin-top: 0px;
-   justify-content: space-between;
+.employer-home-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-#jobdetails{
-    color: #5a7f65;
-    font-size: 30px;
-    margin: 20px 90px 0px 0px;
-    font-weight: bold;
-    cursor: pointer;
-} 
-#postjobs{
-    width: 150px;
-    height:35px;
-    border-radius: 4px;
-    color: #ffffff;
-    font-size: medium;
-    background-color: #5a7f65;
-    border: none;
-    cursor: pointer;
-    margin-top:20px;
-}
-#paradiv1{
-  display: flex;
 
-}
-#paradiv2{
+.employer-header {
+  background: white;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  padding: 20px 50px;
   display: flex;
-  margin-right: 50px;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
-.bottom1{
-  background-color:#ffff;
-  width:100vw;
-  height: 100%;
+
+.header-left {
   display: flex;
+  align-items: center;
+  gap: 15px;
 }
-.applicant-list {
-  background-color:#ffff;
+
+.header-title {
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #0093E9 0%, #80D0C7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-right {
   display: flex;
-  flex-direction: column;
-  width:100%;
-  height:100%;
-  padding-top: 120px;
+  gap: 15px;
 }
-.applicant-card {
-  background: #f4f4f9;
-  padding: 15px;
-  border-radius: 6px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  height:260px;
-  margin: 20px 50px 0px 50px;
-}
-#buttondiv{
-  display: flex;  
-  width: 100%;
-  height:50px;
-}
-#buttondiv1{
-  padding-top: 15px;
-  margin: 0px;
-}
-#buttondiv2{
-  padding-top: 15px;
-  margin-left:900px;
-}
-#buttondiv3{
-  padding-top: 15px;
-  margin-left:50px;
-}
-#viewbutton{
-  width:150px;
-  height:35px;
-  border-radius: 4px;
-  color: #ffffff;
-  font-size: medium;
-  background-color: #5a7f65;
-  border: none;
+
+.post-job-btn,
+.home-btn,
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-}
-#editbutton{
-  width:80px;
-  height:35px;
-  border-radius: 4px;
-  color: #ffffff;
-  font-size: medium;
-  background-color: #5a7f65;
+  transition: all 0.3s ease;
   border: none;
-  cursor: pointer;
-}
-#deletebutton{
-  width:80px;
-  height:35px;
-  border-radius: 4px;
-  color: #ffffff;
-  font-size: medium;
-  background-color: #5a7f65;
-  border: none;
-  cursor: pointer;
-}
-#jobname1{
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 30px;
-  padding:0px;
-  margin: 0px;
-  color: #5a7f65;
-}
-.otherdata{
-  font-size: large;
 }
 
-/*
-#profile{
-  width:50px;
-  height:50px;
-  border-radius: 50%;
-  background-color: #5a7f65;
-  margin-right: 50px;
-}
-#profileButton{
-  border: none;
-  background-color: #ffff;
-}
-.logo{
-  padding: 0;
-  margin:0;
-}
-#heading6{
-  color:#5a7f65;
-  font-weight:bolder;
-  margin-right:110px;
+.post-job-btn {
+  background: linear-gradient(135deg, #0093E9 0%, #80D0C7 100%);
+  color: white;
 }
 
-
-.applicant-card h3 {
-  margin-left:10px;
-  color: #5a7f65;
-  font-size: 25px;
+.post-job-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 147, 233, 0.3);
 }
 
-.applicant-card p {
-  margin: 5px 0;
-  color: #5a7f65;
+.home-btn {
+  background: transparent;
+  color: #0093E9;
+  border: 2px solid #0093E9;
+}
+
+.home-btn:hover {
+  background: #0093E9;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.logout-btn {
+  background: transparent;
+  color: #dc2626;
+  border: 2px solid #dc2626;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.employer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 50px;
+}
+
+.employer-greeting {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 30px;
+}
+
+.no-jobs {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.no-jobs svg {
+  color: #9ca3af;
+  margin-bottom: 20px;
+}
+
+.no-jobs p {
   font-size: 20px;
-  padding:10px;
+  color: #6b7280;
+  margin-bottom: 30px;
 }
-.contact-btn {
-    background: #5a7f65;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-    width:100px;
-  }
-  
-  .contact-btn:hover {
-    background: #28a745;
-    transform:scale(1.05);
-  }  */
 
+.post-first-job-btn {
+  background: linear-gradient(135deg, #0093E9 0%, #80D0C7 100%);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-  .bottom-container {
-    background-color: #ffff;
-    width: 100vw;
-    flex-grow: 1;
-    display: flex;
+.post-first-job-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 147, 233, 0.3);
+}
+
+.jobs-grid {
+  display: grid;
+  gap: 25px;
+}
+
+.job-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 147, 233, 0.15);
+}
+
+.job-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.job-card-header h3 {
+  font-size: 24px;
+  color: #1f2937;
+  font-weight: 700;
+}
+
+.vacancies-badge {
+  background: linear-gradient(135deg, #0093E9 0%, #80D0C7 100%);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.job-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #374151;
+  font-size: 15px;
+}
+
+.info-row svg {
+  color: #0093E9;
+  flex-shrink: 0;
+}
+
+.job-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  flex: 1;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.view-btn {
+  background: linear-gradient(135deg, #0093E9 0%, #80D0C7 100%);
+  color: white;
+}
+
+.view-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 147, 233, 0.3);
+}
+
+.edit-btn {
+  background: transparent;
+  color: #0093E9;
+  border: 2px solid #0093E9;
+}
+
+.edit-btn:hover {
+  background: #0093E9;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.delete-btn {
+  background: transparent;
+  color: #dc2626;
+  border: 2px solid #dc2626;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+  color: white;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .employer-header {
+    padding: 15px 20px;
     flex-direction: column;
+    gap: 15px;
   }
-  
-  .job-list-container {
-    display: flex;
-    flex-direction: column;
+
+  .header-right {
     width: 100%;
-    padding-top: 120px;
-    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
-  
+
+  .employer-content {
+    padding: 20px;
+  }
+
   .employer-greeting {
     font-size: 24px;
-    padding: 10px 20px;
-    margin-bottom: 20px;
   }
-  
+
   .job-card {
-    background: #f4f4f9;
-    padding: 15px;
-    border-radius: 6px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    margin: 20px 50px 0px 50px;
-  }
-  
-  .job-name-text {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 30px;
-    padding: 0px;
-    margin: 0px;
-    color: #5a7f65;
-  }
-  
-  .job-details {
-    font-size: large;
-  }
-  
-  .job-actions {
-    display: flex;
-    width: 100%;
-    margin-top: 15px;
-  }
-  
-  .action-button {
-    width: 120px;
-    height: 35px;
-    border-radius: 4px;
-    color: #ffffff;
-    font-size: medium;
-    background-color: #5a7f65;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-  .delete-job {
-    background-color: #d9534f;
-  }
-  
-  .view-applicants {
-      width: 150px;
-  }
-
-  .logout-btn{
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 18px;
-    margin-left: 15px;
-    width:100px;
-    height: 38px;
-  }
-
-
-  .logout-confirmation {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
     padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    text-align: center;
-  }
-  
-  .logout-confirmation p {
-    margin-bottom: 15px;
-    font-size: 16px;
-  }
-  
-  .logout-confirmation button {
-    margin: 10px;
-    padding: 8px 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .logout-confirmation button:first-child {
-    background-color: #5a7f65; /* Green for Yes */
-    color: white;
-  }
-  
-  .logout-confirmation button:last-child {
-    background-color: #d9534f; /* Red for No */
-    color: white;
-  }
-  
-  .logout-confirmation button:hover {
-    opacity: 0.8;
   }
 
-  .employer-greeting{
-    font-size: 24px;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    color: #1e3f28;
+  .job-card-header h3 {
+    font-size: 20px;
   }
+
+  .job-actions {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    width: 100%;
+  }
+}

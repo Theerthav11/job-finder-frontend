@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./JobsList.css";
-import logo1 from "../../components/images/logo1.png";
 
 const JobsList = () => {
   const [jobs, setJobs] = useState([]);
@@ -22,73 +21,99 @@ const JobsList = () => {
   };
 
   const handleDeleteClick = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/jobs/${id}`);
-      alert("The job has been deleted!");
-      fetchJobs(); // refresh the job list
-    } catch (error) {
-      console.error("Error deleting job:", error);
+    if (window.confirm("Are you sure you want to delete this job?")) {
+      try {
+        await axios.delete(`http://localhost:5000/api/jobs/${id}`);
+        alert("The job has been deleted!");
+        fetchJobs();
+      } catch (error) {
+        console.error("Error deleting job:", error);
+      }
     }
   };
 
-  const handleGoBack = () => {
-    navigate("/AdministratorHome");
-  };
-
   return (
-    <div className="job-listing-container">
-      <header className="job-listing-header">
-        <img src={logo1} alt="Logo" className="listing-header-logo" />
-        <h1 className="listing-header-title">Registered Jobs</h1>
-        <button className="listing-go-back-button" onClick={handleGoBack}>Go Back</button>
+    <div className="jobs-list-wrapper">
+      <header className="jobs-list-header">
+        <div className="header-left">
+          <h1 className="header-title">All Job Postings</h1>
+        </div>
+        <div className="header-right">
+          <button className="back-btn" onClick={() => navigate("/AdministratorHome")}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="19" y1="12" x2="5" y2="12"/>
+              <polyline points="12 19 5 12 12 5"/>
+            </svg>
+            Back
+          </button>
+        </div>
       </header>
 
-      <main className="job-listing-content">
-        <div className="job-listing">
-          <hr className="listing-divider" />
-          {jobs.map((job) => (
-            <div className="job-item" key={job._id}>
-              <div className="job-info">
-                <p className="job-title">{job.title}</p>
-                <p className="job-details-item">
-                  <span className="details-label">Company:</span> {job.company}
-                </p>
-                <p className="job-details-item">
-                  <span className="details-label">Salary Min:</span> {job.minSalary}
-                </p>
-                <p className="job-details-item">
-                  <span className="details-label">Salary Max:</span> {job.maxSalary}
-                </p>
-                <p className="job-details-item">
-                  <span className="details-label">Qualification:</span> {job.qualification}
-                </p>
-                <p className="job-details-item">
-                  <span className="details-label">Age:</span> {job.age}
-                </p>
-                <p className="job-details-item">
-                  <span className="details-label">Vacancies:</span> {job.vacancies}
-                </p>
-                <p className="job-details-item">
-                  <span className="details-label">Shift:</span> {job.shift}
-                </p>
-                <p className="job-details-item">
-                  <span className="details-label">Address:</span> {job.address}
-                </p>
-                <p className="job-details-item">
-                  <span className="details-label">Location:</span> {job.location}
-                </p>
-                <p className="job-details-item">
-                  <span className="details-label">Description:</span> {job.jobDescription}
-                </p>
-              </div>
-              <div className="job-actions-area">
-                <button className="delete-listing-button" onClick={() => handleDeleteClick(job._id)}>
-                  Delete
+      <main className="jobs-list-content">
+        {jobs.length === 0 ? (
+          <div className="no-jobs">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+            <p>No jobs posted yet</p>
+          </div>
+        ) : (
+          <div className="jobs-grid">
+            {jobs.map((job) => (
+              <div className="job-card" key={job._id}>
+                <div className="job-card-header">
+                  <h3>{job.title}</h3>
+                  <span className="company-badge">{job.company}</span>
+                </div>
+
+                <p className="job-description">{job.jobDescription}</p>
+
+                <div className="job-details-grid">
+                  <div className="detail-item">
+                    <span className="detail-label">Salary:</span>
+                    <span>₹{job.minSalary} - ₹{job.maxSalary}</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Location:</span>
+                    <span>{job.location}</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Qualification:</span>
+                    <span>{job.qualification}</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Age:</span>
+                    <span>{job.age}+</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Vacancies:</span>
+                    <span>{job.vacancies}</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Shift:</span>
+                    <span>{job.shift}</span>
+                  </div>
+                </div>
+
+                <div className="job-address">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  </svg>
+                  <span>{job.address}</span>
+                </div>
+
+                <button className="delete-btn" onClick={() => handleDeleteClick(job._id)}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  </svg>
+                  Delete Job
                 </button>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </main>
     </div>
   );

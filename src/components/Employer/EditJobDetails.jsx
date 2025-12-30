@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import './JobAdd.css';
 
@@ -111,14 +111,27 @@ function Edit() {
   };
 
   return (
-    <div className="job-details-container">
-      <div className="job-details-form">
-        <h1 className="job-details-heading">Edit Job Details</h1>
-        <label className="job-details-label">About the Job</label>
-        <form onSubmit={handleSubmit} className="job-details-form-content">
+    <div className="job-form-wrapper">
+      <div className="job-form-header">
+        <button className="back-btn" onClick={() => navigate('/EmployerHomePage')}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+          </svg>
+          Back
+        </button>
+        <h1 className="form-title">Edit Job Details</h1>
+      </div>
 
-          <label htmlFor="title" className="job-details-input-label">Select Job Role*</label>
-          <select name="title" className="job-details-input" value={formData.title || ''} onChange={handleChange} required>
+      <div className="job-form-container">
+        <form onSubmit={handleSubmit} className="job-form">
+
+          <div className="form-section">
+            <h3 className="section-title">About the Job</h3>
+            
+            <div className="form-group">
+              <label htmlFor="title">Job Role*</label>
+              <select name="title" value={formData.title || ''} onChange={handleChange} required>
             <option value="">Select Role</option>
             <option value='electrician'>Electrician</option>
             <option value='plumber'>Plumber</option>
@@ -135,64 +148,104 @@ function Edit() {
             <option value='customersupport'>Customer Support</option>
             <option value='floormanager'>Floor Manager</option>
             <option value='social'>Social Media Assistant</option>
-          </select>
+              </select>
+            </div>
 
-          <label className="job-details-input-label">Job Description*</label>
-          <input type='text' placeholder='About the job' name="jobDescription" value={formData.jobDescription} onChange={handleChange} className="job-details-input" required />
+            <div className="form-group">
+              <label>Job Description*</label>
+              <textarea placeholder='Describe the job role and responsibilities' name="jobDescription" value={formData.jobDescription} onChange={handleChange} rows="4" required />
+            </div>
 
-          <label className="job-details-input-label">Monthly Income</label>
-          <div className="salary-input-group">
-            <input type="text" name="minSalary" placeholder='Min Salary' value={formData.minSalary} onChange={handleChange} className="job-details-input salary-input" required />
-            <input type="text" name="maxSalary" placeholder='Max Salary' value={formData.maxSalary} onChange={handleChange} className="job-details-input salary-input" required />
-          </div>
+            <div className="form-row">
+              <div className="form-group">
+                <label>Minimum Salary*</label>
+                <input type="text" name="minSalary" placeholder='e.g., 15000' value={formData.minSalary} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <label>Maximum Salary*</label>
+                <input type="text" name="maxSalary" placeholder='e.g., 25000' value={formData.maxSalary} onChange={handleChange} required />
+              </div>
+            </div>
 
-          <label htmlFor='qualification' className="job-details-input-label">Required Qualification*</label>
-          <select name="qualification" className="job-details-input" value={formData.qualification || ''} onChange={handleChange} required>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor='qualification'>Required Qualification*</label>
+                <select name="qualification" value={formData.qualification || ''} onChange={handleChange} required>
             <option value="">Select Qualification</option>
             <option value='pg'>Post Graduate</option>
             <option value='ug'>Under Graduate</option>
             <option value='diploma'>Diploma</option>
             <option value='plustwo'>Higher Secondary</option>
             <option value='sslc'>High School</option>
-          </select>
+                </select>
+              </div>
 
-          <label className="job-details-input-label">Job Shift*</label>
-          <select name="shift" className="job-details-input" value={formData.shift || ''} onChange={handleChange} required>
+              <div className="form-group">
+                <label>Job Shift*</label>
+                <select name="shift" value={formData.shift || ''} onChange={handleChange} required>
             <option value="">Select Shift</option>
             <option value='day'>Day Shift</option>
             <option value='night'>Night Shift</option>
             <option value='any'>Any Shift</option>
-          </select>
+                </select>
+              </div>
+            </div>
 
-          <label className="job-details-input-label">Minimum Age Required*</label>
-          <input type='text' placeholder='Enter min age' name='age' className="job-details-input" value={formData.age} onChange={handleChange} required />
+            <div className="form-row">
+              <div className="form-group">
+                <label>Minimum Age Required*</label>
+                <input type='text' placeholder='e.g., 18' name='age' value={formData.age} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <label>Number of Vacancies*</label>
+                <input type='text' placeholder='e.g., 5' name='vacancies' value={formData.vacancies} onChange={handleChange} required />
+              </div>
+            </div>
+          </div>
 
-          <label className="job-details-input-label">Number of Vacancies*</label>
-          <input type='text' placeholder='vacancies' name='vacancies' className="job-details-input" value={formData.vacancies} onChange={handleChange} required />
+          <div className="form-section">
+            <h3 className="section-title">Company Details</h3>
+            
+            <div className="form-group">
+              <label htmlFor="company">Company Name*</label>
+              <input type="text" name="company" placeholder="Enter company name" value={formData.company} onChange={handleChange} required />
+            </div>
 
-          <label className="job-details-label">About the Shop</label>
+            <div className="form-group">
+              <label>Address*</label>
+              <input type="text" name="address" placeholder="Company address" value={formData.address} onChange={handleChange} required />
+            </div>
 
-          <label htmlFor="company" className="job-details-input-label">Company Name*</label>
-          <input type="text" name="company" placeholder="Enter shop name" className="job-details-input" value={formData.company} onChange={handleChange} required />
+            <div className="form-group">
+              <label>Job Location*</label>
+              <input type="text" name="location" placeholder="City or area" value={formData.location} onChange={handleChange} required />
+            </div>
+          </div>
 
-          <label className="job-details-input-label">Address*</label>
-          <input type="text" name="address" placeholder="address" className="job-details-input" value={formData.address} onChange={handleChange} required />
+          <div className="form-section">
+            <h3 className="section-title">Contact Details</h3>
+            
+            <div className="form-row">
+              <div className="form-group">
+                <label>Phone Number*</label>
+                <input type="tel" name="phone" placeholder="Enter phone number" value={formData.phone} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <label>WhatsApp Number*</label>
+                <input type="tel" name="whatsapp" placeholder="Enter WhatsApp number" value={formData.whatsapp} onChange={handleChange} required />
+              </div>
+            </div>
+          </div>
 
-          <label className="job-details-input-label">Job Location*</label>
-          <input type="text" name="location" placeholder="location" className="job-details-input" value={formData.location} onChange={handleChange} required />
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
 
-          <label className="job-details-label">Contact Details</label>
-
-          <label className="job-details-input-label">Phone Number*</label>
-          <input type="tel" name="phone" placeholder="Enter phone number" className="job-details-input" value={formData.phone} onChange={handleChange} required />
-
-          <label className="job-details-input-label">WhatsApp Number*</label>
-          <input type="tel" name="whatsapp" placeholder="Enter WhatsApp number" className="job-details-input" value={formData.whatsapp} onChange={handleChange} required />
-
-          <button type="submit" className="job-details-submit-button">Update</button>
+          <button type="submit" className="submit-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Update Job
+          </button>
         </form>
-
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
     </div>
   );
